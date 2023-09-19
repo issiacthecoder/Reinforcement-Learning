@@ -22,17 +22,17 @@ position_initial_estimate = centroid
 
 # Function to calculate Euclidean distance
 def euclidean_distance(a, b):
-return np.linalg.norm(a - b)
+    return np.linalg.norm(a - b)
 
 # Function to calculate GDOP (Geometric Dilution of Precision)
 def calculate_gdop(jacobian):
-G = np.linalg.inv(np.dot(jacobian.T, jacobian))
-gdop = np.sqrt(np.trace(G))
-return gdop
+    G = np.linalg.inv(np.dot(jacobian.T, jacobian))
+    gdop = np.sqrt(np.trace(G))
+    return gdop
 
 # Function to calculate reward based on GDOP
 def calculate_reward(gdop):
-return np.sqrt(10/3) / gdop if gdop > 0 else 0
+    return np.sqrt(10/3) / gdop if gdop > 0 else 0
 
 
 ### Step 2: Implement the Bandit Algorithm.
