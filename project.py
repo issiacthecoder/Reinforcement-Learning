@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 ### Step 1: Initialize the problem parameters.
 num_anchor_nodes = 5
-total_steps = 100000
+total_steps = 50
 
 # Initialize anchor node positions and target position
 anchor_positions = np.array([[11, 30, 10], [5, 40, -20], [15, 40, 30], [5, 35, 20], [15, 35, -10]], dtype=float)
@@ -49,18 +49,18 @@ for x in epsilons:
     reward = 0
 
     # Main loop for the epsilon-greedy bandit algorithm
-    for y in total_steps:
+    for y in range(total_steps):
         # Select three anchor nodes (action A)
-        hello = 5
+        placeholder = "hello"
 
         # Exploration: Choose random actions
         randomuniform = np.random.uniform(0, 1)
         if randomuniform < current_epsilon:
-            print("Hello!")
+            print("Explore!")
         
         # Exploitation: Choose actions with highest Q-values
         else:
-            print("Goodbye!")
+            print("Exploit!")
         # Code for determining pseudoranges
         #pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
 
