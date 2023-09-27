@@ -38,40 +38,45 @@ def calculate_reward(gdop):
 ### Step 2: Implement the Bandit Algorithm.
 
 # Loop through the epsilon values
+for x in epsilons:
+    current_epsilon = x
 
-# Initializing the 'position_stimate' to 'position_initial_estimate'
-position_estimate = position_initial_estimate.copy()
+    # Initializing the 'position_estimate' to 'position_initial_estimate'
+    position_estimate = position_initial_estimate.copy()
 
-# Initialize action counts for each epsilon
+    # Initialize action counts for each epsilon
+    actioncount = 0
 
-# Initialize Q-values for each epsilon
+    # Initialize Q-values for each epsilon
+    reward = 0
 
-# Main loop for the epsilon-greedy bandit algorithm
+    # Main loop for the epsilon-greedy bandit algorithm
+    for y in total_steps:
+        # Select three anchor nodes (action A)
+        
 
-# Select three anchor nodes (action A)
+        # Exploration: Choose random actions
 
-# Exploration: Choose random actions
+        # Exploitation: Choose actions with highest Q-values
 
-# Exploitation: Choose actions with highest Q-values
+        # Code for determining pseudoranges
+        #pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
 
-# Code for determining pseudoranges
-#pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
+        # Determine the 'jacobian' matrix based on the selected anchor nodes
 
-# Determine the 'jacobian' matrix based on the selected anchor nodes
+        # Determine the 'gdop' value GDOP(A) from the calculated 'jacobian'
 
-# Determine the 'gdop' value GDOP(A) from the calculated 'jacobian'
+        # Determine the 'reward' R(A) using the 'gdop' value
 
-# Determine the 'reward' R(A) using the 'gdop' value
+        # Update action counts N(A)
 
-# Update action counts N(A)
+        # Update Q-values Q(A)
 
-# Update Q-values Q(A)
+        # Update position estimate
 
-# Update position estimate
+        # Store GDOP(A), R(A), Euclidean distance error for each step of 'total_steps'
 
-# Store GDOP(A), R(A), Euclidean distance error for each step of 'total_steps'
-
-# Store GDOP values, rewards, Euclidean distance errors for each epsilon
+        # Store GDOP values, rewards, Euclidean distance errors for each epsilon
 
 
 ### Step 3: Plot and analyze the results.
