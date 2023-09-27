@@ -55,7 +55,7 @@ position_estimate = position_initial_estimate.copy()
 # Exploitation: Choose actions with highest Q-values
 
 # Code for determining pseudoranges
-pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
+#pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
 
 # Determine the 'jacobian' matrix based on the selected anchor nodes
 
