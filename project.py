@@ -2,7 +2,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 ### Step 1: Initialize the problem parameters.
 num_anchor_nodes = 5
 total_steps = 100000
@@ -34,7 +33,6 @@ def calculate_gdop(jacobian):
 def calculate_reward(gdop):
     return np.sqrt(10/3) / gdop if gdop > 0 else 0
 
-
 ### Step 2: Implement the Bandit Algorithm.
 
 # Loop through the epsilon values
@@ -53,12 +51,16 @@ for x in epsilons:
     # Main loop for the epsilon-greedy bandit algorithm
     for y in total_steps:
         # Select three anchor nodes (action A)
-        
+        hello = 5
 
         # Exploration: Choose random actions
-
+        randomuniform = np.random.uniform(0, 1)
+        if randomuniform < current_epsilon:
+            print("Hello!")
+        
         # Exploitation: Choose actions with highest Q-values
-
+        else:
+            print("Goodbye!")
         # Code for determining pseudoranges
         #pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
 
