@@ -1,6 +1,7 @@
 # Import necessary libraries
 import numpy as np
 import matplotlib.pyplot as plt
+import random
 
 ### Step 1: Initialize the problem parameters.
 num_anchor_nodes = 5
@@ -50,9 +51,11 @@ for x in epsilons:
 
     # Main loop for the epsilon-greedy bandit algorithm
     for y in range(total_steps):
+        
         # Select three anchor nodes (action A)
-        for i in anchor_positions:
-            selected_positions = []
+        selected_positions = np.array([[0, 0, 0], [0, 0, 0],[0, 0, 0]])
+        for i in range(3):
+            selected_positions[i] = anchor_positions[random.randint(0,4)]
 
         # Exploration: Choose random actions
         randomuniform = np.random.uniform(0, 1)
@@ -64,6 +67,7 @@ for x in epsilons:
             print("Exploit!")
         # Code for determining pseudoranges
         pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
+        print(pseudoranges)
 
         # Determine the 'jacobian' matrix based on the selected anchor nodes
 
