@@ -39,7 +39,6 @@ def calculate_reward(gdop):
 # Loop through the epsilon values
 for x in epsilons:
     current_epsilon = x
-
     # Initializing the 'position_estimate' to 'position_initial_estimate'
     position_estimate = position_initial_estimate.copy()
 
@@ -55,21 +54,26 @@ for x in epsilons:
         # Select three anchor nodes (action A)
         selected_positions = np.array([[0, 0, 0], [0, 0, 0],[0, 0, 0]])
         for i in range(3):
-            selected_positions[i] = anchor_positions[random.randint(0,4)]
-
+            selected_positions[i] = anchor_positions[np.random.choice(3, 1, replace=True) ]
         # Exploration: Choose random actions
         randomuniform = np.random.uniform(0, 1)
         if randomuniform < current_epsilon:
-            print("Explore!")
-        
+            #print("Explore!")
+            filler = 5
         # Exploitation: Choose actions with highest Q-values
         else:
-            print("Exploit!")
+            # print("Exploit!")
+            buffer = 1
         # Code for determining pseudoranges
+
         pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
-        print(pseudoranges)
+        pseudoranges = np.array(pseudoranges)
+        print(selected_positions)
+        jacobian = (target_position - selected_positions) / ((2 * pseudoranges) ** 2)
+        print("\n",jacobian,"\n")
 
         # Determine the 'jacobian' matrix based on the selected anchor nodes
+        calculate_gdop(jacobian)
 
         # Determine the 'gdop' value GDOP(A) from the calculated 'jacobian'
 
@@ -93,3 +97,16 @@ for x in epsilons:
 # Plot Reward vs. Steps for each step and each epsilon
 
 # Plot Distance Error vs. Steps for each step and each epsilon
+
+#
+#def calculate_jacobian(selected_positions, position_estimate, pseudoranges):
+
+ #   J = np.zeros((3, 3)).astype(float)
+
+#    for i in range(3): # 3 rows, f, g, h representing the 3 selected anchor nodes
+
+#       for j in range(3): # 3 columns, x, y, z representing the 3 coordinates of the target
+
+#            JacobianCalc[i,j] = (-(selected_positions[i][j] - position_estimate[j]))/((2*pseudoranges[i])**2)
+
+#    return JacobianCalc
