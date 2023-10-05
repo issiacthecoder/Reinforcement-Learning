@@ -51,20 +51,17 @@ for x in epsilons:
     # Main loop for the epsilon-greedy bandit algorithm
     for y in range(total_steps):
         
-        # Select three anchor nodes (action A)
-        selected_positions = np.array([[0, 0, 0], [0, 0, 0],[0, 0, 0]])
-        selected_positions = anchor_positions[random.sample(range(4), 3)]
-        
+        # Select three anchor nodes (action A)      
         # Exploration: Choose random actions
         randomuniform = np.random.uniform(0, 1)
         if randomuniform < current_epsilon:
-            #print("Explore!")
-            filler = 5
+            selected_positions = np.array([[0, 0, 0], [0, 0, 0],[0, 0, 0]])
+            selected_positions = anchor_positions[random.sample(range(5), 3)]
         
         # Exploitation: Choose actions with highest Q-values
         else:
-            # print("Exploit!")
-            buffer = 1
+            selected_positions = np.array([[0, 0, 0], [0, 0, 0],[0, 0, 0]])
+            selected_positions = anchor_positions[random.sample(range(5), 3)]
         
         # Code for determining pseudoranges
         pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
