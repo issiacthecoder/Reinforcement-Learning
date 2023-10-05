@@ -69,18 +69,21 @@ for x in epsilons:
         # Code for determining pseudoranges
         pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
         pseudoranges = np.array(pseudoranges)
-        jacobian = (target_position - selected_positions) / ((2 * pseudoranges) ** 2)
         
         # Determine the 'jacobian' matrix based on the selected anchor nodes
-        print("\n", calculate_gdop(jacobian))
+        jacobian = (target_position - selected_positions) / ((2 * pseudoranges) ** 2)
 
         # Determine the 'gdop' value GDOP(A) from the calculated 'jacobian'
+        gdop = calculate_gdop(jacobian)
 
         # Determine the 'reward' R(A) using the 'gdop' value
+        calculate_reward(gdop)
 
         # Update action counts N(A)
+        actioncount = actioncount + 1
 
         # Update Q-values Q(A)
+        reward = reward + 1
 
         # Update position estimate
 
