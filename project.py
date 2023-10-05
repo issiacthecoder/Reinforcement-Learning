@@ -77,13 +77,14 @@ for x in epsilons:
         gdop = calculate_gdop(jacobian)
 
         # Determine the 'reward' R(A) using the 'gdop' value
-        calculate_reward(gdop)
+        reward = calculate_reward(gdop)
 
         # Update action counts N(A)
         actioncount = actioncount + 1
 
         # Update Q-values Q(A)
         reward = reward + 1
+        print(reward)
 
         # Update position estimate
 
@@ -99,16 +100,3 @@ for x in epsilons:
 # Plot Reward vs. Steps for each step and each epsilon
 
 # Plot Distance Error vs. Steps for each step and each epsilon
-
-#
-#def calculate_jacobian(selected_positions, position_estimate, pseudoranges):
-
- #   J = np.zeros((3, 3)).astype(float)
-
-#    for i in range(3): # 3 rows, f, g, h representing the 3 selected anchor nodes
-
-#       for j in range(3): # 3 columns, x, y, z representing the 3 coordinates of the target
-
-#            JacobianCalc[i,j] = (-(selected_positions[i][j] - position_estimate[j]))/((2*pseudoranges[i])**2)
-
-#    return JacobianCalc
