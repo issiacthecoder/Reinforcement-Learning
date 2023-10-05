@@ -53,27 +53,26 @@ for x in epsilons:
         
         # Select three anchor nodes (action A)
         selected_positions = np.array([[0, 0, 0], [0, 0, 0],[0, 0, 0]])
-        for i in range(3):
-            selected_positions[i] = anchor_positions[np.random.choice(3, 1, replace=True) ]
+        selected_positions = anchor_positions[random.sample(range(4), 3)]
+        
         # Exploration: Choose random actions
         randomuniform = np.random.uniform(0, 1)
         if randomuniform < current_epsilon:
             #print("Explore!")
             filler = 5
+        
         # Exploitation: Choose actions with highest Q-values
         else:
             # print("Exploit!")
             buffer = 1
+        
         # Code for determining pseudoranges
-
         pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
         pseudoranges = np.array(pseudoranges)
-        print(selected_positions)
         jacobian = (target_position - selected_positions) / ((2 * pseudoranges) ** 2)
-        print("\n",jacobian,"\n")
-
+        
         # Determine the 'jacobian' matrix based on the selected anchor nodes
-        calculate_gdop(jacobian)
+        print("\n", calculate_gdop(jacobian))
 
         # Determine the 'gdop' value GDOP(A) from the calculated 'jacobian'
 
