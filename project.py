@@ -50,7 +50,6 @@ for x in epsilons:
 
     # Main loop for the epsilon-greedy bandit algorithm
     for y in range(total_steps):
-        
         # Select three anchor nodes (action A)      
         # Exploration: Choose random actions
         randomuniform = np.random.uniform(0, 1)
@@ -80,17 +79,17 @@ for x in epsilons:
         actioncount = actioncount + 1
 
         # Update Q-values Q(A)
-        reward = reward
-
+        for i in range(total_steps)
+            reward[i] = rewa
+        reward_append = np.append(reward, reward)
         # Update position estimate
-        res = [euclidean_distance(selected_positions[i], position_estimate) for i in range(3)] - pseudoranges
-        updated_pos = np.dot(np.dot(np.linalg.inv(np.dot(jacobian.T, jacobian)), jacobian.T), res)
-        print(updated_pos)
+        delta = np.dot(np.dot(np.linalg.inv(np.dot(jacobian.T, jacobian)), jacobian.T), ([euclidean_distance(selected_positions[i], position_estimate) for i in range(3)] - pseudoranges))
+        position_estimate = position_estimate + delta
 
         # Store GDOP(A), R(A), Euclidean distance error for each step of 'total_steps'
 
         # Store GDOP values, rewards, Euclidean distance errors for each epsilon
-
+print(reward_append)
 
 ### Step 3: Plot and analyze the results.
 
