@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import random
+from itertools import combinations
 
 ### Step 1: Initialize the problem parameters.
 num_anchor_nodes = 5
@@ -43,10 +44,12 @@ for x in epsilons:
     position_estimate = position_initial_estimate.copy()
 
     # Initialize action counts for each epsilon
-    actioncount = 0
+    actioncount = {}
+    actioncount[epsilons] = {}
 
     # Initialize Q-values for each epsilon
-    reward = 0
+    reward = {}
+    reward[epsilons] = {}
 
     # Main loop for the epsilon-greedy bandit algorithm
     for y in range(total_steps):
@@ -76,12 +79,10 @@ for x in epsilons:
         reward = calculate_reward(gdop)
 
         # Update action counts N(A)
-        actioncount = actioncount + 1
+        #actioncount = actioncount + 1
 
         # Update Q-values Q(A)
-        for i in range(total_steps)
-            reward[i] = rewa
-        reward_append = np.append(reward, reward)
+
         # Update position estimate
         delta = np.dot(np.dot(np.linalg.inv(np.dot(jacobian.T, jacobian)), jacobian.T), ([euclidean_distance(selected_positions[i], position_estimate) for i in range(3)] - pseudoranges))
         position_estimate = position_estimate + delta
@@ -89,7 +90,6 @@ for x in epsilons:
         # Store GDOP(A), R(A), Euclidean distance error for each step of 'total_steps'
 
         # Store GDOP values, rewards, Euclidean distance errors for each epsilon
-print(reward_append)
 
 ### Step 3: Plot and analyze the results.
 
