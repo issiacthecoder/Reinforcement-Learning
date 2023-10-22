@@ -70,12 +70,12 @@ for x in epsilons:
     # Initialize action counts for each epsilon
     actioncount = {}
     for i in actions:
-        actioncount[i] = {0}
-    print(actioncount)
+        actioncount[i] = 0
+
     # Initialize Q-values for each epsilon
     qvalues = {}
     for i in actions:
-        qvalues[i] = {0}
+        qvalues[i] = 0
 
     # Main loop for the epsilon-greedy bandit algorithm
     for y in range(total_steps):
@@ -84,8 +84,6 @@ for x in epsilons:
         randomuniform = np.random.uniform(0, 1)
         if randomuniform < x:
             selected_positions = random.choice(list(actions.values()))
-            # selected_positions = np.array([[0, 0, 0], [0, 0, 0],[0, 0, 0]])
-            # selected_positions = anchor_positions[random.sample(range(5), 3)]
         
         # Exploitation: Choose actions with highest Q-values
         else:
@@ -98,7 +96,6 @@ for x in epsilons:
         
         # Determine the 'jacobian' matrix based on the selected anchor nodes
         jacobian = (position_estimate - selected_positions) / (pseudoranges)
-        print(jacobian)
 
         # Determine the 'gdop' value GDOP(A) from the calculated 'jacobian'
         gdop = calculate_gdop(jacobian)
@@ -107,10 +104,10 @@ for x in epsilons:
         reward = calculate_reward(gdop)
 
         # Update action counts N(A)
-        #actioncount[highvalue] + 1
+        actioncount[highvalue] += 1
 
         # Update Q-values Q(A)
-        #qvalues[selected_positions] = 0
+        qvalues[selected_positions] = 0
 
 
         # Update position estimate
@@ -120,7 +117,7 @@ for x in epsilons:
         # Store GDOP(A), R(A), Euclidean distance error for each step of 'total_steps'
 
         # Store GDOP values, rewards, Euclidean distance errors for each epsilon
-
+print(actioncount)
 ### Step 3: Plot and analyze the results.
 
 # Plot GDOP vs. Steps for each step and each epsilon
