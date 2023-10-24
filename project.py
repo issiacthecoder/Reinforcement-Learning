@@ -109,24 +109,24 @@ for x in range(len(epsilons)):
 
 ### Step 3: Plot and analyze the results.
 #Plot GDOP vs. Steps for each step and each epsilon
-plt.scatter(range(total_steps), total_gdop[0])
-plt.scatter(range(total_steps), total_gdop[1])
+plt.plot(range(total_steps), total_gdop[0])
+plt.plot(range(total_steps), total_gdop[1])
 plt.xlabel('Steps')
 plt.ylabel('GDOP')
 plt.title('GDOP vs Steps')
 plt.show()
 
 # Plot Reward vs. Steps for each step and each epsilon
-plt.scatter(range(total_steps), total_reward[0])
-plt.scatter(range(total_steps), total_reward[1])
+plt.plot(range(total_steps), total_reward[0])
+plt.plot(range(total_steps), total_reward[1])
 plt.xlabel('Steps')
 plt.ylabel('Reward')
 plt.title('Reward vs Steps')
 plt.show()
 
 # Plot Distance Error vs. Steps for each step and each epsilon
-plt.scatter(range(total_steps), total_error[0])
-plt.scatter(range(total_steps), total_error[1])
+plt.plot(range(total_steps), total_error[0])
+plt.plot(range(total_steps), total_error[1])
 plt.xlabel('Steps')
 plt.ylabel('Error')
 plt.title('Error vs Steps')
