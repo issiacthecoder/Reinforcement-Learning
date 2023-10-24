@@ -105,7 +105,7 @@ for x in range(len(epsilons)):
         # Store GDOP(A), R(A), Euclidean distance error for each step of 'total_steps' and for each epsilon
         total_gdop[x][y] = gdop
         total_reward[x][y] = reward
-        #total_error[x][y] = np.zeros((len(epsilons), total_steps))
+        total_error[x][y] = np.linalg.norm(target_position - position_estimate)
 
 ### Step 3: Plot and analyze the results.
 #Plot GDOP vs. Steps for each step and each epsilon
@@ -125,3 +125,9 @@ plt.title('Reward vs Steps')
 plt.show()
 
 # Plot Distance Error vs. Steps for each step and each epsilon
+plt.scatter(range(total_steps), total_error[0])
+plt.scatter(range(total_steps), total_error[1])
+plt.xlabel('Steps')
+plt.ylabel('Error')
+plt.title('Error vs Steps')
+plt.show()
