@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 ### Step 1: Initialize the problem parameters.
 num_anchor_nodes = 5
-total_steps = 1000 
+total_steps = 10000 
 
 # Initialize anchor node positions and target position
 anchor_positions = np.array([[11, 30, 10], [5, 40, -20], [15, 40, 30], [5, 35, 20], [15, 35, -10]], dtype=float)
@@ -84,7 +84,7 @@ for x in range(len(epsilons)):
         pseudoranges = np.array(pseudoranges)
         
         # Determine the 'jacobian' matrix based on the selected anchor nodes
-        jacobian = (target_position - selected_positions) / (pseudoranges)
+        jacobian = (position_estimate - selected_positions) / (pseudoranges)
 
         # Determine the 'gdop' value GDOP(A) from the calculated 'jacobian'
         gdop = calculate_gdop(jacobian)
@@ -94,9 +94,9 @@ for x in range(len(epsilons)):
 
         # Update action counts N(A)
         actioncount[index] += 1
-        
+
         # Update Q-values Q(A)
-        #qvalues[index] += ((qvalues[index] + (1 / actioncount[index]) * (reward - qvalues[index])))
+        qvalues[index] += ((qvalues[index] + (1 / actioncount[index]) * (reward - qvalues[index])))
 
         # Update position estimate
         delta = np.dot(np.dot(np.linalg.inv(np.dot(jacobian.T, jacobian)), jacobian.T), ([euclidean_distance(selected_positions[i], position_estimate) for i in range(3)] - pseudoranges))
@@ -108,20 +108,20 @@ for x in range(len(epsilons)):
         #total_error[x][y] = np.zeros((len(epsilons), total_steps))
 
 ### Step 3: Plot and analyze the results.
-# Plot GDOP vs. Steps for each step and each epsilon
-# plt.scatter(range(total_steps), total_gdop[0])
-# plt.scatter(range(total_steps), total_gdop[1])
-# plt.xlabel('Steps')
-# plt.ylabel('GDOP')
-# plt.title('GDOP vs Steps')
-# plt.show()
+#Plot GDOP vs. Steps for each step and each epsilon
+plt.scatter(range(total_steps), total_gdop[0])
+plt.scatter(range(total_steps), total_gdop[1])
+plt.xlabel('Steps')
+plt.ylabel('GDOP')
+plt.title('GDOP vs Steps')
+plt.show()
 
-# # Plot Reward vs. Steps for each step and each epsilon
-# plt.scatter(range(total_steps), total_reward[0])
-# plt.scatter(range(total_steps), total_reward[1])
-# plt.xlabel('Steps')
-# plt.ylabel('Reward')
-# plt.title('Reward vs Steps')
-# plt.show()
+# Plot Reward vs. Steps for each step and each epsilon
+plt.scatter(range(total_steps), total_reward[0])
+plt.scatter(range(total_steps), total_reward[1])
+plt.xlabel('Steps')
+plt.ylabel('Reward')
+plt.title('Reward vs Steps')
+plt.show()
 
 # Plot Distance Error vs. Steps for each step and each epsilon
