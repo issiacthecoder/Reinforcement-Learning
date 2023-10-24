@@ -50,16 +50,16 @@ actions = {
     '9' : anchor_positions[random.sample(range(5), 3)],
 }
 
-# print(actions["0"])
-# print("\n", actions["1"])
-# print("\n", actions["2"])
-# print("\n", actions["3"])
-# print("\n", actions["4"])
-# print("\n", actions["5"])
-# print("\n", actions["6"])
-# print("\n", actions["7"])
-# print("\n", actions["8"])
-# print("\n", actions["9"])
+print(actions["0"])
+print("\n", actions["1"])
+print("\n", actions["2"])
+print("\n", actions["3"])
+print("\n", actions["4"])
+print("\n", actions["5"])
+print("\n", actions["6"])
+print("\n", actions["7"])
+print("\n", actions["8"])
+print("\n", actions["9"])
 
 
 # Loop through the epsilon values
@@ -84,7 +84,6 @@ for x in epsilons:
         randomuniform = np.random.uniform(0, 1)
         if randomuniform < x:
             selected_positions = random.choice(list(actions.values()))
-        
         # Exploitation: Choose actions with highest Q-values
         else:
             highvalue = max(qvalues, key = qvalues.get)
@@ -107,7 +106,7 @@ for x in epsilons:
         actioncount[highvalue] += 1
 
         # Update Q-values Q(A)
-        qvalues[selected_positions] = 0
+        #qvalues[selected_positions] = 0
 
 
         # Update position estimate
@@ -117,7 +116,6 @@ for x in epsilons:
         # Store GDOP(A), R(A), Euclidean distance error for each step of 'total_steps'
 
         # Store GDOP values, rewards, Euclidean distance errors for each epsilon
-print(actioncount)
 ### Step 3: Plot and analyze the results.
 
 # Plot GDOP vs. Steps for each step and each epsilon
