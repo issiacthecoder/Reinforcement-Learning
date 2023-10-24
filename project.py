@@ -1,6 +1,7 @@
 # Import necessary libraries
 import numpy as np
 import random
+import matplotlib.pyplot as plt 
 
 ### Step 1: Initialize the problem parameters.
 num_anchor_nodes = 5
@@ -104,13 +105,23 @@ for x in range(len(epsilons)):
         # Store GDOP(A), R(A), Euclidean distance error for each step of 'total_steps' and for each epsilon
         total_gdop[x][y] = gdop
         total_reward[x][y] = reward
-        total_error[x][y] = np.zeros((len(epsilons), total_steps))
+        #total_error[x][y] = np.zeros((len(epsilons), total_steps))
 
 ### Step 3: Plot and analyze the results.
-
 # Plot GDOP vs. Steps for each step and each epsilon
+# plt.scatter(range(total_steps), total_gdop[0])
+# plt.scatter(range(total_steps), total_gdop[1])
+# plt.xlabel('Steps')
+# plt.ylabel('GDOP')
+# plt.title('GDOP vs Steps')
+# plt.show()
 
-
-# Plot Reward vs. Steps for each step and each epsilon
+# # Plot Reward vs. Steps for each step and each epsilon
+# plt.scatter(range(total_steps), total_reward[0])
+# plt.scatter(range(total_steps), total_reward[1])
+# plt.xlabel('Steps')
+# plt.ylabel('Reward')
+# plt.title('Reward vs Steps')
+# plt.show()
 
 # Plot Distance Error vs. Steps for each step and each epsilon
