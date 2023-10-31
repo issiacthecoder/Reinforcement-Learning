@@ -69,8 +69,7 @@ for x in range(len(epsilons)):
         # Select three anchor nodes (action A) 
 
         # Exploration: Choose random actions
-        randomuniform = np.random.uniform(0, 1)
-        if randomuniform < epsilons[x]:
+        if np.random.uniform(0, 1) < epsilons[x]:
             index = random.randint(0,9)
             selected_positions = actions[index]
 
@@ -78,7 +77,6 @@ for x in range(len(epsilons)):
         else:
             index = np.argmax(qvalues)
             selected_positions = actions[index]
-            
         # Code for determining pseudoranges
         pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
         pseudoranges = np.array(pseudoranges)
