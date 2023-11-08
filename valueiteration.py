@@ -95,7 +95,7 @@ while delta >= theta:
                 
                 # Store the immediate neighboring state values and sort them from lowest to highest
                 neighbors = [up, down, left, right]
-                sorted = sort(neighbors)
+                sorted = np.sort(neighbors)
 
                 # If there is a 1, -1, or nan value present, delete it. 
                 if np.isnan(sorted).any():
