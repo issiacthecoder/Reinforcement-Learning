@@ -77,6 +77,7 @@ for x in range(len(epsilons)):
         else:
             index = np.argmax(qvalues)
             selected_positions = actions[index]
+        
         # Code for determining pseudoranges
         pseudoranges = [euclidean_distance(selected_positions[i], position_estimate) + np.random.uniform(-0.0001, 0.0001, 1)[0] for i in range(3)]
         pseudoranges = np.array(pseudoranges)
