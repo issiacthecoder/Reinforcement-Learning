@@ -136,8 +136,10 @@ while delta >= theta:
     print("\n", newenvironment)
 environment = newenvironment.copy()
 
+# Assigns heat map different colors so that red is the lowest reward and green is the highest reward
 cmap = plt.cm.RdYlGn 
 
+# Plot the heatmap of the environment before the algorithm
 plt.suptitle("Value Iteration Plots")
 plt.imshow(initialenvironment, cmap=cmap, vmin = -1, vmax = 1)
 for (j,i),label in np.ndenumerate(initialenvironment):
@@ -145,7 +147,8 @@ for (j,i),label in np.ndenumerate(initialenvironment):
     plt.text(i,j,label,ha='center',va='center')
 plt.title("Initial State")
 plt.show()
- 
+
+# Plot the heatmap of the environment with each state's respected rewards
 plt.imshow(environment, cmap = cmap, vmin = -1, vmax = 1)
 for (j,i),label in np.ndenumerate(newenvironment):
     plt.text(i,j,label,ha='center',va='center')
@@ -153,7 +156,8 @@ for (j,i),label in np.ndenumerate(newenvironment):
 plt.title("Final State")
 plt.show()
 
- 
+# Plot the change in delta vs iterations
 plt.plot(delta_change)
-plt.title("Change in Delta")
+plt.xlabel('Iterations')
+plt.ylabel('Change in delta')
 plt.show()

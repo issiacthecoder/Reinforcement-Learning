@@ -48,6 +48,7 @@ actions[7] = [5, 40, -20], [15, 40, 30], [15, 35, -10]
 actions[8] = [5, 40, -20], [5, 35, 20], [15, 35, -10]
 actions[9] = [15, 40, 30], [5, 35, 20], [15, 35, -10]
 
+# Define arrays that you will use to store results
 total_gdop = np.zeros((len(epsilons), total_steps))
 total_reward = np.zeros((len(epsilons), total_steps))
 total_error = np.zeros((len(epsilons), total_steps))
@@ -116,15 +117,15 @@ plt.legend()
 plt.title('GDOP vs Steps')
 plt.show()
 
-# Plot Reward vs. Steps for each step and each epsilon
-average_reward = [np.mean(total_reward[0][i:i+ 10]) for i in range(0, total_steps, 100)]
-average_reward1 = [np.mean(total_reward[1][i:i+ 10]) for i in range(0, total_steps, 100)]
-steps = range(1, len(average_reward)+1)
-plt.plot(steps, average_reward, label = 'ε = 0.01')
-plt.plot(steps, average_reward1, label = 'ε = 0.3')
+# Plot the Average Reward vs. Steps for every 100 steps and for each epsilon
+average_reward_1 = [np.mean(total_reward[0][i:i+ 10]) for i in range(0, total_steps, 100)]
+average_reward_2 = [np.mean(total_reward[1][i:i+ 10]) for i in range(0, total_steps, 100)]
+steps = range(1, len(average_reward_1)+1)
+plt.plot(steps, average_reward_1, label = 'ε = 0.01')
+plt.plot(steps, average_reward_2, label = 'ε = 0.3')
 plt.xlabel('Steps')
-plt.ylabel('Reward')
-plt.title('Reward vs Steps')
+plt.ylabel('Average Reward')
+plt.title('Average Reward vs Steps')
 plt.show()
 
 # Plot Distance Error vs. Steps for each step and each epsilon
