@@ -108,24 +108,28 @@ for x in range(len(epsilons)):
 
 ### Step 3: Plot and analyze the results.
 #Plot GDOP vs. Steps for each step and each epsilon
-plt.plot(range(total_steps), total_gdop[0])
-plt.plot(range(total_steps), total_gdop[1])
+plt.plot(range(total_steps), total_gdop[0], label = 'ε = 0.01')
+plt.plot(range(total_steps), total_gdop[1], label = 'ε = 0.3')
 plt.xlabel('Steps')
 plt.ylabel('GDOP')
+plt.legend()
 plt.title('GDOP vs Steps')
 plt.show()
 
 # Plot Reward vs. Steps for each step and each epsilon
-plt.plot(range(total_steps), total_reward[0])
-plt.plot(range(total_steps), total_reward[1])
+average_reward = [np.mean(total_reward[0][i:i+ 10]) for i in range(0, total_steps, 100)]
+average_reward1 = [np.mean(total_reward[1][i:i+ 10]) for i in range(0, total_steps, 100)]
+steps = range(1, len(average_reward)+1)
+plt.plot(steps, average_reward, label = 'ε = 0.01')
+plt.plot(steps, average_reward1, label = 'ε = 0.3')
 plt.xlabel('Steps')
 plt.ylabel('Reward')
 plt.title('Reward vs Steps')
 plt.show()
 
 # Plot Distance Error vs. Steps for each step and each epsilon
-plt.plot(range(total_steps), total_error[0])
-plt.plot(range(total_steps), total_error[1])
+plt.plot(range(total_steps), total_error[0], label = 'ε = 0.01')
+plt.plot(range(total_steps), total_error[1], label = 'ε = 0.3')
 plt.xlabel('Steps')
 plt.ylabel('Error')
 plt.title('Error vs Steps')

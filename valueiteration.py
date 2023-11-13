@@ -1,19 +1,32 @@
 import numpy as np
 import math
+import random
+import matplotlib.pyplot as plt 
 
 # Define environment
-environment = np.zeros((3,4))
-environment[1][1] = np.nan
-environment[0][3] = 1
-environment[1][3] = -1
+environment = np.zeros((5,5))
+
+# Randomly define the blocked cells with nan
+environment[random.randint(0, (len(environment) - 1))][random.randint(0, (len(environment) - 1))] = np.nan
+
+# Randomly define the unwanted terminal state
+environment[random.randint(0, (len(environment) - 1))][random.randint(0, (len(environment) - 1))] = -1
+
+# Randomly define the desired terminal state
+environment[random.randint(0, (len(environment) - 1))][random.randint(0, (len(environment) - 1))] = 1
+
 newenvironment = environment.copy()
+initialenvironment = environment.copy()
+delta_change = []
 
 # Initialize variables
 gamma = 0.9
-theta = 0.000000000000001
+theta = 0.01
 delta = theta
-row = len(environment) # 3
-col = np.size(environment,1) # 4
+row = len(environment)
+col = np.size(environment,1)
+iteration = 0
+print(environment)
 
 # Delta will iteratively increase until greater than or equal to theta
 while delta >= theta:
@@ -28,8 +41,8 @@ while delta >= theta:
             # Check if the element is a positive state, negative state, or a "blocked" element
             if environment[x][y] != "nan" and environment[x][y] != 1 and environment[x][y] != -1:
                 
-                neighbors = []
-
+                neighbors = np.array
+                
                 # Checking upper left corner
                 if x == 0 and y == 0:
                     up = environment[x][y]
@@ -116,7 +129,31 @@ while delta >= theta:
 
                 # Find the updated delta value by taking the absolute difference between the new state value and the old state value
                 if delta < abs((newenvironment[x][y] - environment[x][y])):
-                    delta = (newenvironment[x][y] - environment[x][y])
-
+                    delta = abs((newenvironment[x][y] - environment[x][y]))
+                    iteration += 1
+                    delta_change.append(delta)
+                    
     print("\n", newenvironment)
 environment = newenvironment.copy()
+
+cmap = plt.cm.RdYlGn 
+
+plt.suptitle("Value Iteration Plots")
+plt.imshow(initialenvironment, cmap=cmap, vmin = -1, vmax = 1)
+for (j,i),label in np.ndenumerate(initialenvironment):
+    plt.text(i,j,label,ha='center',va='center')
+    plt.text(i,j,label,ha='center',va='center')
+plt.title("Initial State")
+plt.show()
+ 
+plt.imshow(environment, cmap = cmap, vmin = -1, vmax = 1)
+for (j,i),label in np.ndenumerate(newenvironment):
+    plt.text(i,j,label,ha='center',va='center')
+    plt.text(i,j,label,ha='center',va='center')
+plt.title("Final State")
+plt.show()
+
+ 
+plt.plot(delta_change)
+plt.title("Change in Delta")
+plt.show()
